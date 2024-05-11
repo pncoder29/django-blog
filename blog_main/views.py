@@ -3,7 +3,7 @@ from blogs_app.models import Blog, Category
 
 def home(request):
     # Fetching categories from your database
-    categories = Category.objects.all()
+    # categories = Category.objects.all()
     
     # Fetching featured blog posts using object filter with status
     featured_posts = Blog.objects.filter(is_featured=True, status="published")
@@ -11,7 +11,7 @@ def home(request):
     
     # Sending your data into your HTML or frontend
     context = { 
-        "categories": categories,
+        # "categories": categories,
         "featured_posts": featured_posts,
         "posts": posts,
     }
