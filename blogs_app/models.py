@@ -38,3 +38,13 @@ class Blog(models.Model):
     #A object type that convert to string display 
     def __str__(self):
         return self.title
+    
+#Create social media links models
+class social_link(models.Model):
+    platform_name = models.CharField(max_length=50)
+    link = models.URLField(max_length=250)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.platform_name

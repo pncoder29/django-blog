@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Blog
+from .models import Category, Blog, social_link
 
 #this purpose for prepopulated fields for title slug
 class BlogAdmin(admin.ModelAdmin):
@@ -15,5 +15,6 @@ class BlogAdmin(admin.ModelAdmin):
     list_editable =("is_featured",)
 
 # Register your models here.
+admin.site.register(social_link)
 admin.site.register(Category)
 admin.site.register(Blog, BlogAdmin)

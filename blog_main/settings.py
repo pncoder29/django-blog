@@ -66,6 +66,7 @@ TEMPLATES = [
                 
                 #adding context_processors from blogs_app to get_categories
                 'blogs_app.context_processors.get_categories',
+                'blogs_app.context_processors.get_social_link',
             ],
         },
     },
