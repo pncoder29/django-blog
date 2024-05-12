@@ -20,6 +20,9 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+#this came from folder blogs_app pointing views.py 
+from blogs_app import views as blogsview
+
 urlpatterns = [
     #this path for admin
     path('admin/', admin.site.urls),
@@ -29,4 +32,7 @@ urlpatterns = [
     
     #this path for blogs_apps or your startapp project_name
     path("category/", include("blogs_app.urls")),
+    
+    #this path for slug urls
+    path("<slug:slug>/", blogsview.blogs, name="blogs"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
