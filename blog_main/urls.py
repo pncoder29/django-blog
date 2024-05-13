@@ -35,4 +35,7 @@ urlpatterns = [
     
     #this path for slug urls
     path("<slug:slug>/", blogsview.blogs, name="blogs"),
+    
+    #search endpoint
+    path("blogs_app/search", blogsview.search, name="search"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
