@@ -34,8 +34,11 @@ urlpatterns = [
     path("category/", include("blogs_app.urls")),
     
     #this path for slug urls
-    path("<slug:slug>/", blogsview.blogs, name="blogs"),
+    path("blogs_app<slug:slug>/", blogsview.blogs, name="blogs"),
     
     #search endpoint
     path("blogs_app/search", blogsview.search, name="search"),
+    
+    #this path for registration
+    path("register/", views.register, name="register"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

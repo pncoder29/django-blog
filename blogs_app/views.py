@@ -37,9 +37,14 @@ def blogs(request, slug):
 
 #this is search area keyword title, short description, blog body with Q objects
 def search(request):
+    
+    #search term
     keyword = request.GET.get("keyword")
+    
+    #keyword title, short description, blog body with Q objects
     blogs = Blog.objects.filter(Q(title__icontains=keyword) | Q(short_description__icontains=keyword) | Q(blog_body__icontains=keyword), status="published")
     context ={
         "blogs": blogs,
+        "keyword": keyword,
     }
     return render(request, "search.html", context)

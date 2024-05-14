@@ -16,3 +16,7 @@ def home(request):
         "posts": posts,
     }
     return render(request, 'index.html', context)
+
+#this views for registration
+def register(request):
+    return render(request, "register.html")
