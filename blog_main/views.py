@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from blogs_app.models import Blog, Category
+from blogs_app.forms import RegistrationForm
+
 
 def home(request):
     # Fetching categories from your database
@@ -19,4 +21,17 @@ def home(request):
 
 #this views for registration
 def register(request):
-    return render(request, "register.html")
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        #validation if request data is correct
+        if form.is_valid():
+            form.save()
+            return redirect('register')
+        else:
+            print(form.errors) 
+    else:
+        form = RegistrationForm()
+    context ={
+        "form": form,
+    }
+    return render(request, "register.html", context)
