@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from blogs_app.models import Blog, Category
 from blogs_app.forms import RegistrationForm
 from django.contrib.auth.forms import AuthenticationForm
-
+from django.contrib import auth
 
 def home(request):
     # Fetching categories from your database
@@ -40,8 +40,27 @@ def register(request):
 
 #this view is for login
 def login(request):
+    if request.method == 'POST':
+        
+        #requesting all data from POST
+        form = AuthenticationForm(request, request.POST)
+        
+        #validating username and password
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+        
+        user = auth.authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+        return redirect('home')
     form = AuthenticationForm()
     context = {
         "form": form,
     }
     return render(request, "login.html", context)
+
+#this is for logout
+def logout(request):
+    auth.logout(request)
+    return redirect("home")
