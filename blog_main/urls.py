@@ -46,5 +46,8 @@ urlpatterns = [
     path("login/", views.login, name="login"),
     
     #this path for logout
-    path("logout/", views.logout, name="logout")
+    path("logout/", views.logout, name="logout"),
+    
+    #this path for dashboard included
+    path("dashboard/", include("dashboard.url")),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
