@@ -4,6 +4,8 @@ from blogs_app.models import Blog, Category
 #login required decorator
 from django.contrib.auth.decorators import login_required
 
+from .forms import CategoryForm
+
 #login required during user going to login
 @login_required(login_url='login')
 
@@ -21,3 +23,11 @@ def dashboard(request):
 #sidebar and linking
 def categories(request):
     return render(request, "dashboard/categories.html")
+
+#add categories
+def add_categories(request):
+    form = CategoryForm()
+    context = {
+        "form":form,
+    }
+    return render(request, "dashboard/add_categories.html", context)
